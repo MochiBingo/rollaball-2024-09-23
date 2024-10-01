@@ -3,12 +3,17 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using TMPro;
+using System;
 
 public class PlayerController : MonoBehaviour
 {
     public float speed = 0;
     public TextMeshProUGUI countText;
     public GameObject winTextObject;
+    bool stopwatchActive = true;
+    float currentTime;
+    public TextMeshProUGUI currentTimeText;
+    
     void OnMove(InputValue movementValue)
     {
         Vector2 movementVector = movementValue.Get<Vector2>();
@@ -22,6 +27,7 @@ public class PlayerController : MonoBehaviour
         if (count>=10)
         {
             winTextObject.SetActive(true);
+            stopwatchActive = false;
         }
     }
     private Rigidbody rb;
@@ -34,6 +40,16 @@ public class PlayerController : MonoBehaviour
         count = 0;
         SetCountText();
         winTextObject.SetActive(false);
+        currentTime = 0;
+    }
+    private void Update()
+    {
+        if (stopwatchActive==true)
+        {
+            currentTime = currentTime + Time.deltaTime;
+        }
+        TimeSpan time = TimeSpan.FromSeconds(currentTime);
+        currentTimeText.text = time.ToString(@"mm\:ss\:fff");
     }
     private void FixedUpdate()
     {
