@@ -8,7 +8,6 @@ using System;
 public class PlayerController : MonoBehaviour
 {
     public float speed = 0;
-    public TextMeshProUGUI countText;
     public GameObject winTextObject;
     bool stopwatchActive = true;
     float currentTime;
@@ -21,24 +20,12 @@ public class PlayerController : MonoBehaviour
         movementY = movementVector.y;
     }
 
-    void SetCountText()
-    {
-        countText.text = "Count: " + count.ToString();
-        if (count>=10)
-        {
-            winTextObject.SetActive(true);
-            stopwatchActive = false;
-        }
-    }
     private Rigidbody rb;
-    private int count;
     private float movementX;
     private float movementY;
     void Start()
     {
         rb = GetComponent<Rigidbody>();
-        count = 0;
-        SetCountText();
         winTextObject.SetActive(false);
         currentTime = 0;
     }
@@ -59,11 +46,10 @@ public class PlayerController : MonoBehaviour
     }
     void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.CompareTag("PickUp"))
+        if (other.gameObject.CompareTag("Finish"))
         {
-            other.gameObject.SetActive(false);
-            count = count + 1;
-            SetCountText();
+            winTextObject.SetActive(true);
+            stopwatchActive = false;
         }
     }
 }
