@@ -37,6 +37,8 @@ public class PlayerController : MonoBehaviour
         }
         TimeSpan time = TimeSpan.FromSeconds(currentTime);
         currentTimeText.text = time.ToString(@"mm\:ss\:fff");
+        Cursor.lockState=CursorLockMode.Locked;
+
     }
     private void FixedUpdate()
     {
