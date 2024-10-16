@@ -7,12 +7,12 @@ using System;
 
 public class PlayerController : MonoBehaviour
 {
-    public float speed = 0;
     public GameObject winTextObject;
     bool stopwatchActive = true;
     float currentTime;
     public TextMeshProUGUI currentTimeText;
-    
+    public float speed = 0;
+
     void OnMove(InputValue movementValue)
     {
         Vector2 movementVector = movementValue.Get<Vector2>();
@@ -37,8 +37,8 @@ public class PlayerController : MonoBehaviour
         }
         TimeSpan time = TimeSpan.FromSeconds(currentTime);
         currentTimeText.text = time.ToString(@"mm\:ss\:fff");
-        Cursor.lockState=CursorLockMode.Locked;
 
+        Cursor.lockState=CursorLockMode.Locked;
     }
     private void FixedUpdate()
     {
