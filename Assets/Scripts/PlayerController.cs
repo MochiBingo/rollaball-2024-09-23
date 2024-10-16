@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using TMPro;
 using System;
+using Unity.VisualScripting.FullSerializer;
 
 public class PlayerController : MonoBehaviour
 {
@@ -39,6 +40,8 @@ public class PlayerController : MonoBehaviour
         currentTimeText.text = time.ToString(@"mm\:ss\:fff");
 
         Cursor.lockState=CursorLockMode.Locked;
+        Cursor.visible = false;
+
     }
     private void FixedUpdate()
     {
