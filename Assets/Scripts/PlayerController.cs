@@ -12,7 +12,7 @@ public class PlayerController : MonoBehaviour
     bool stopwatchActive = true;
     float currentTime;
     public TextMeshProUGUI currentTimeText;
-    public float speed = 0;
+    public float speed;
 
     void OnMove(InputValue movementValue)
     {
@@ -55,6 +55,7 @@ public class PlayerController : MonoBehaviour
         {
             winTextObject.SetActive(true);
             stopwatchActive = false;
+            rb.isKinematic = true;
         }
     }
 }
