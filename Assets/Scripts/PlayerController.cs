@@ -58,8 +58,13 @@ public class PlayerController : MonoBehaviour
     private void FixedUpdate()
     {
         Vector3 movement = new Vector3(movementX, 0.0f, movementY);
+        movement = Camera.main.transform.rotation * movement;
         rb.AddForce(movement);
         rb.AddForce(movement * speed);
+        if (movement.sqrMagnitude > 0.1f && isGrounded)
+        {
+            transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(movement), 1f);
+        }
     }
     void OnTriggerEnter(Collider other)
     {
