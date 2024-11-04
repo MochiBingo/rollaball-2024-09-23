@@ -1,18 +1,23 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class triggerDoor : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public GameObject AnimatedObject;
+
+    private Animator _animator;
+    public GameObject player;
+    
+
+    private void Start()
     {
-        
+        _animator = AnimatedObject.GetComponent<Animator>();
     }
 
-    // Update is called once per frame
-    void Update()
+    void OnTriggerEnter(Collider player)
     {
-        
+            _animator.enabled = true;
     }
 }
