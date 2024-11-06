@@ -8,7 +8,6 @@ public class billboard : MonoBehaviour
     void Update()
     {
         cameraDir = Camera.main.transform.forward;
-        cameraDir.y = 0;
         transform.rotation = Quaternion.LookRotation(cameraDir);
     }
 }
