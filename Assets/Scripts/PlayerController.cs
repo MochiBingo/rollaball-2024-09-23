@@ -5,6 +5,7 @@ using UnityEngine.InputSystem;
 using TMPro;
 using System;
 using Unity.VisualScripting.FullSerializer;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
@@ -32,7 +33,9 @@ public class PlayerController : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         winTextObject.SetActive(false);
         currentTime = 0;
-        jump = new Vector3(0.0f, 2.0f, 0.0f);
+        jump = new Vector3(0.0f, 2.5f, 0.0f);
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
     }
     private void OnCollisionStay()
     {
@@ -46,9 +49,6 @@ public class PlayerController : MonoBehaviour
         }
         TimeSpan time = TimeSpan.FromSeconds(currentTime);
         currentTimeText.text = time.ToString(@"mm\:ss\:fff");
-
-        Cursor.lockState=CursorLockMode.Locked;
-        Cursor.visible = false;
         if(Input.GetKeyDown(KeyCode.Space) && isGrounded)
         {
             rb.AddForce(jump * jumpforce, ForceMode.Impulse);
@@ -73,6 +73,13 @@ public class PlayerController : MonoBehaviour
             winTextObject.SetActive(true);
             stopwatchActive = false;
             rb.isKinematic = true;
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
+
         }
+    }
+    public void GoToMenu()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
     }
 }

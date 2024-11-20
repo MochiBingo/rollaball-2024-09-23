@@ -6,6 +6,9 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/Scenes/mainMenu.unity
+    guid: b89f34efd7385f4428ceddfd90276de7
+  - enabled: 1
     path: Assets/Scenes/rollaball.unity
     guid: 8e388e611e9720147a83f60a8b9412e9
   m_configObjects: {}
