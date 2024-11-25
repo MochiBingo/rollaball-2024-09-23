@@ -10,6 +10,7 @@ using UnityEngine.SceneManagement;
 public class PlayerController : MonoBehaviour
 {
     public GameObject winTextObject;
+    public GameObject deathText;
     bool stopwatchActive = true;
     float currentTime;
     public TextMeshProUGUI currentTimeText;
@@ -81,5 +82,20 @@ public class PlayerController : MonoBehaviour
     public void GoToMenu()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
+    }
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("FLOOR"))
+        {
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
+            stopwatchActive = false;
+            rb.isKinematic = true;
+            deathText.SetActive(true);
+        }
+    }
+    public void ResetGame()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 }
