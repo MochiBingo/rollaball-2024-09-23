@@ -34,7 +34,7 @@ public class PlayerController : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         winTextObject.SetActive(false);
         currentTime = 0;
-        jump = new Vector3(0.0f, 2.5f, 0.0f);
+        jump = new Vector3(0.0f, 3f, 0.0f);
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
     }
